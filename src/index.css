@@ -8,51 +8,61 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Brand: deep navy + gold + white */
+    --background: 210 40% 99%;
+    --foreground: 220 50% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 50% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 50% 12%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary = deep navy */
+    --primary: 220 60% 16%;
+    --primary-foreground: 45 65% 92%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary = soft sand */
+    --secondary: 40 30% 96%;
+    --secondary-foreground: 220 60% 16%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 25% 95%;
+    --muted-foreground: 220 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent = gold */
+    --accent: 42 65% 52%;
+    --accent-foreground: 220 60% 16%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --gold: 42 65% 52%;
+    --gold-soft: 42 70% 88%;
+    --navy-deep: 220 65% 10%;
+    --navy-soft: 220 40% 96%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    --success: 145 55% 42%;
+    --success-foreground: 0 0% 100%;
 
-    --sidebar-background: 0 0% 98%;
+    --border: 220 20% 92%;
+    --input: 220 20% 92%;
+    --ring: 220 60% 16%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --radius: 1rem;
 
-    --sidebar-primary: 240 5.9% 10%;
+    --shadow-soft: 0 1px 2px hsl(220 40% 20% / 0.04), 0 4px 16px hsl(220 40% 20% / 0.04);
+    --shadow-elegant: 0 8px 30px -10px hsl(220 60% 16% / 0.18);
+    --gradient-gold: linear-gradient(135deg, hsl(42 70% 58%), hsl(38 75% 48%));
+    --gradient-navy: linear-gradient(135deg, hsl(220 60% 16%), hsl(220 65% 10%));
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 220 60% 16%;
+    --sidebar-foreground: 210 30% 88%;
+    --sidebar-primary: 42 65% 52%;
+    --sidebar-primary-foreground: 220 60% 12%;
+    --sidebar-accent: 220 50% 22%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 50% 22%;
+    --sidebar-ring: 42 65% 52%;
   }
 
   .dark {
@@ -100,6 +110,11 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tight;
   }
 }
