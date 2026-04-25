@@ -1,15 +1,17 @@
-import { LayoutDashboard, Users, MessageCircle, BarChart3, Package, Settings, LogOut, Moon } from "lucide-react";
+import { LayoutDashboard, Users, MessageCircle, BarChart3, Database, Settings, LogOut, Moon } from "lucide-react";
+import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const items = [
-  { label: "Dashboard", icon: LayoutDashboard, active: true },
-  { label: "Leads", icon: Users, badge: 24 },
-  { label: "Conversas", icon: MessageCircle, badge: 7 },
-  { label: "Produtos", icon: Package },
-  { label: "Relatórios", icon: BarChart3 },
+  { label: "Dashboard", icon: LayoutDashboard, to: "/" },
+  { label: "Leads", icon: Users, to: "/dados", badge: 24 },
+  { label: "Conversas", icon: MessageCircle, to: "#", badge: 7 },
+  { label: "Dados & Planilhas", icon: Database, to: "/dados" },
+  { label: "Relatórios", icon: BarChart3, to: "#" },
 ];
 
 export const CrmSidebar = () => {
+  const { pathname } = useLocation();
   return (
     <aside className="hidden lg:flex w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground border-r border-sidebar-border">
       <div className="p-6 flex items-center gap-2.5 border-b border-sidebar-border">
@@ -26,18 +28,22 @@ export const CrmSidebar = () => {
         <p className="px-3 pb-2 pt-2 text-[10px] uppercase tracking-widest text-sidebar-foreground/50">Principal</p>
         {items.map((item) => {
           const Icon = item.icon;
+          const active = item.to !== "#" && pathname === item.to;
+          const Wrapper = item.to === "#" ? "button" : NavLink;
+          const props = item.to === "#" ? {} : { to: item.to };
           return (
-            <button
+            <Wrapper
               key={item.label}
+              {...(props as { to: string })}
               className={cn(
                 "w-full flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
-                item.active
+                active
                   ? "bg-sidebar-accent text-primary-foreground shadow-soft"
                   : "text-sidebar-foreground/80 hover:bg-sidebar-accent/60 hover:text-primary-foreground"
               )}
             >
               <span className="flex items-center gap-3">
-                <Icon className={cn("size-[18px]", item.active && "text-gold")} />
+                <Icon className={cn("size-[18px]", active && "text-gold")} />
                 {item.label}
               </span>
               {item.badge && (
@@ -45,7 +51,7 @@ export const CrmSidebar = () => {
                   {item.badge}
                 </span>
               )}
-            </button>
+            </Wrapper>
           );
         })}
       </nav>
